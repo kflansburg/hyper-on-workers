@@ -1,0 +1,25 @@
+[package]
+name = "worker-rust"
+version = "0.1.0"
+edition = "2021"
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = "0.0.16"
+hyper = { version="0.14", features=['http1', 'client'] }
+tokio = {version = "1.0", default-features=false, features=['io-util', 'macros']}
+console_error_panic_hook = { version = "0.1.1" }
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1
+
+[patch.crates-io]
+worker = { path = '../workers-rs/worker' }
