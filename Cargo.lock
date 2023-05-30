@@ -869,6 +869,7 @@ dependencies = [
  "console_error_panic_hook",
  "hyper",
  "tokio",
+ "wasm-bindgen-futures",
  "worker",
 ]
 

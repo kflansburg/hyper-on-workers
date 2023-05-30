@@ -12,14 +12,16 @@ crate-type = ["cdylib"]
 
 [dependencies]
 worker = "0.0.16"
-hyper = { version="0.14", features=['http1', 'client'] }
+hyper = { version="0.14", default-features=false, features=['http1', 'client'] }
 tokio = {version = "1.0", default-features=false, features=['io-util', 'macros']}
 console_error_panic_hook = { version = "0.1.1" }
+wasm-bindgen-futures = "0.4"
 
 [profile.release]
-lto = true
-strip = true
-codegen-units = 1
+#lto = true
+#strip = true
+#codegen-units = 1
+debug = true
 
 [patch.crates-io]
 worker = { path = '../workers-rs/worker' }
